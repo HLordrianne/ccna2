@@ -1,0 +1,131 @@
+@D1
+***************dict********************
+Config t
+vlan 31
+name DICT.GOV.COM
+Interface vlan 31
+ desc DICT.GOV.COM
+ no shut
+ ip add 10.0.0.65 255.255.255.192
+ip dhcp excluded-add 10.0.0.65 10.0.0.75
+ip dhcp pool DICT.GOV.COM
+ network 10.0.0.64 255.255.255.192
+ default-router 10.0.0.65
+ domain-name DICT.GOV.COM
+Int e1/0
+ no shut
+ switchport mode access
+ switchport access vlan 31
+
+***************dpwh********************
+Config t
+vlan 32
+name DPWH.GOV.COM
+Interface vlan 32
+ desc DPWH.GOV.COM
+ no shut
+ ip add 10.0.0.129 255.255.224.0
+ip dhcp excluded-add 10.0.0.129 10.0.0.229
+ip dhcp pool DPWH.GOV.COM
+ network 10.0.0.128 255.255.224.0
+ default-router 10.0.0.129
+ domain-name DPWH.GOV.COM
+Int e0/0
+ no shut
+ switchport mode access
+ switchport access vlan 32
+ DO SH VLAN BRIEF
+
+***************deped********************
+Config t
+vlan 33
+name DEPED.GOV.COM
+Interface vlan 33
+ desc DEPED.GOV.COM
+ no shut
+ ip add 10.0.32.1 255.255.224.0
+ip dhcp excluded-add 10.0.32.1 10.0.32.101
+ip dhcp pool DEPED.GOV.COM
+ network 10.0.32.0 255.255.224.0
+ default-router 10.0.32.1
+ domain-name DEPED.GOV.COM
+Int e1/0
+ no shut
+ switchport mode access
+ switchport access vlan 33
+ DO SH VLAN BRIEF
+
+***************PNP********************
+Config t
+vlan 34
+name PNP.GOV.COM
+Interface vlan 34
+ desc PNP.GOV.COM
+ no shut
+ ip add 10.0.64.1 255.255.192.0
+ip dhcp excluded-add 10.0.32.1 10.0.32.101
+ip dhcp pool PNP.GOV.COM
+ network 10.0.64.0 255.255.192.0
+ default-router 10.0.32.1
+ domain-name PNP.GOV.COM
+Int e1/0
+ no shut
+ switchport mode access
+ switchport access vlan 34
+ DO SH VLAN BRIEF
+
+@PC & @SW
+
+@P1
+config t
+int e0/0
+no shut
+ip add dhcp
+do bp
+do sh ip domain
+
+@P2
+config t
+int e1/0
+no shut
+ip add dhcp
+do bp
+do sh ip domain
+
+@S1
+config t
+int e1/0
+no shut
+ip add dhcp
+do bp
+
+@S2
+config t
+int e1/0
+no shut
+ip add dhcp
+do bp
+do sh ip domain
+
+@a1:
+CONFIG T
+Int e0/0
+ no shut
+ switchport mode access
+ switchport access vlan 21
+ DO SH VLAN BRIEF
+@a2:
+CONFIG T
+Int e1/0
+ no shut
+ switchport mode access
+ switchport access vlan 22
+ DO SH VLAN BRIEF
+
+@C2:
+CONFIG T
+Int e1/0
+ no shut
+ switchport mode access
+ switchport access vlan 23
+ DO SH VLAN BRIEF
